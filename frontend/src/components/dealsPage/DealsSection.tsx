@@ -14,7 +14,6 @@ interface DealSlide {
 }
 
 const DealsOfTheMonth: React.FC = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [timeLeft, setTimeLeft] = useState({
     days: 2,
     hours: 6,
@@ -49,6 +48,11 @@ const DealsOfTheMonth: React.FC = () => {
     },
   ];
 
+  // Large enough array to prevent hitting the end in normal use
+  const extendedSlides = Array(20).fill(slides).flat();
+  const [currentSlide, setCurrentSlide] = useState(slides.length * 10); // Start nicely in the middle
+  const [isTransitioning, setIsTransitioning] = useState(true);
+
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
@@ -81,30 +85,49 @@ const DealsOfTheMonth: React.FC = () => {
   // Auto-slide every 6 seconds
   useEffect(() => {
     const slideTimer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      nextSlide();
     }, 6000);
     return () => clearInterval(slideTimer);
-  }, [currentSlide, slides.length]);
+  }, []);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
+    setIsTransitioning(true);
+    setCurrentSlide((prev) => prev + 1);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    setIsTransitioning(true);
+    setCurrentSlide((prev) => prev - 1);
   };
+
+  const handleTransitionEnd = () => {
+    // Seamless infinite reset
+    if (currentSlide >= slides.length * 15) {
+      setIsTransitioning(false);
+      setCurrentSlide(currentSlide - slides.length * 10);
+    } else if (currentSlide <= slides.length * 5) {
+      setIsTransitioning(false);
+      setCurrentSlide(currentSlide + slides.length * 10);
+    }
+  };
+
+  // Restore transition after seamless reset
+  useEffect(() => {
+    if (!isTransitioning) {
+      const timer = setTimeout(() => setIsTransitioning(true), 50);
+      return () => clearTimeout(timer);
+    }
+  }, [isTransitioning]);
 
   const formatNumber = (num: number): string => {
     return num.toString().padStart(2, "0");
   };
 
-  const getVisibleSlides = () => {
-    const visible = [];
-    for (let i = 0; i < 3; i++) {
-      const index = (currentSlide + i) % slides.length;
-      visible.push({ ...slides[index], position: i });
-    }
-    return visible;
+  const handleDotClick = (index: number) => {
+    setIsTransitioning(true);
+    const currentActual = currentSlide % slides.length;
+    const diff = index - currentActual;
+    setCurrentSlide(currentSlide + diff);
   };
 
   return (
@@ -154,9 +177,9 @@ const DealsOfTheMonth: React.FC = () => {
         </div>
 
         {/* Right Content - Image Slider */}
-        <div className="relative flex items-center">
+        <div className="relative flex items-center min-w-0">
           {/* Navigation Arrows - Vertically stacked on the far left of the images */}
-          <div className="flex flex-col gap-4 mr-4 self-end mb-12">
+          <div className="flex flex-col gap-4 mr-4 self-end mb-12 relative z-10">
             <button
               onClick={prevSlide}
               className="w-10 h-10 rounded-full border border-gray-300 bg-white flex items-center justify-center hover:bg-gray-100 transition-colors shadow-sm"
@@ -176,56 +199,60 @@ const DealsOfTheMonth: React.FC = () => {
           </div>
 
           {/* Images Container */}
-          <div className="flex gap-6 flex-1 items-start">
-            {getVisibleSlides().map((slide, idx) => {
-              const isFirst = idx === 0;
-              const isSecond = idx === 1;
+          <div className="flex-1 overflow-hidden">
+            <div 
+              className={`flex gap-6 items-start w-max ${isTransitioning ? "transition-transform duration-[800ms] ease-in-out" : ""}`}
+              style={{ transform: `translateX(-${currentSlide * 264}px)` }}
+              onTransitionEnd={handleTransitionEnd}
+            >
+              {extendedSlides.map((slide, idx) => {
+                const isFirst = idx === currentSlide;
+                const isSecond = idx === currentSlide + 1;
 
-              return (
-                <div
-                  key={`${slide.id}-${currentSlide}`}
-                  className={`relative flex-shrink-0 transition-all duration-500 ${isFirst ? "w-[320px]" : "w-[240px]"
-                    }`}
-                >
-                  <div className={`relative overflow-hidden bg-gray-100 ${isFirst ? "h-[480px]" : "h-[420px]"
-                    }`}>
-                    <img
-                      src={slide.image}
-                      alt={slide.title}
-                      className="w-full h-full object-cover"
-                    />
+                return (
+                  <div
+                    key={`${slide.id}-${idx}`}
+                    className={`relative flex-shrink-0 transition-all duration-[800ms] ease-in-out ${isFirst ? "w-[320px]" : "w-[240px]"}`}
+                  >
+                    <div className={`relative overflow-hidden bg-gray-100 transition-all duration-[800ms] ease-in-out ${isFirst ? "h-[480px]" : "h-[420px]"}`}>
+                      <img
+                        src={slide.image}
+                        alt={slide.title}
+                        className="w-full h-full object-cover"
+                      />
 
-                    {/* Sales Card on First Image */}
-                    {isFirst && (
-                      <div className="absolute bottom-6 left-6 bg-white px-5 py-4 rounded-sm shadow-xl z-10 min-w-[160px]">
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="text-xs text-gray-400 font-medium">{String(slide.id).padStart(2, "0")}</span>
-                          <span className="text-gray-300">—</span>
-                          <span className="text-xs text-gray-600 font-semibold uppercase tracking-wider">{slide.title}</span>
+                      {/* Sales Card on First Image */}
+                      {isFirst && (
+                        <div className="absolute bottom-6 left-6 bg-white px-5 py-4 rounded-sm shadow-xl z-10 min-w-[160px]">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-xs text-gray-400 font-medium">{String(slide.id).padStart(2, "0")}</span>
+                            <span className="text-gray-300">—</span>
+                            <span className="text-xs text-gray-600 font-semibold uppercase tracking-wider">{slide.title}</span>
+                          </div>
+                          <p className="text-xl font-bold text-gray-900">{slide.discount}</p>
                         </div>
-                        <p className="text-xl font-bold text-gray-900">{slide.discount}</p>
+                      )}
+                    </div>
+
+                    {/* Dots Indicator - Centered under the Second Image only */}
+                    {isSecond && (
+                      <div className="flex justify-center gap-2 mt-6">
+                        {slides.map((_, index) => (
+                          <button
+                            key={index}
+                            onClick={() => handleDotClick(index)}
+                            className={`rounded-full transition-all ${index === (currentSlide % slides.length)
+                                ? "bg-gray-900 w-2.5 h-2.5"
+                                : "bg-gray-300 w-2 h-2"
+                              }`}
+                          />
+                        ))}
                       </div>
                     )}
                   </div>
-
-                  {/* Dots Indicator - Centered under the Second Image only */}
-                  {isSecond && (
-                    <div className="flex justify-center gap-2 mt-6">
-                      {slides.map((_, index) => (
-                        <button
-                          key={index}
-                          onClick={() => setCurrentSlide(index)}
-                          className={`rounded-full transition-all ${index === currentSlide
-                              ? "bg-gray-900 w-2.5 h-2.5"
-                              : "bg-gray-300 w-2 h-2"
-                            }`}
-                        />
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
