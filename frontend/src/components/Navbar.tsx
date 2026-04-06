@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav className="w-full bg-[#FFFFFF]">
       <div className="max-w-[1400px] mx-auto flex items-center justify-between px-8 py-5">
-        <a href="/" className="text-3xl font-bold text-[#484848] tracking-tight text-foreground" style={{ fontFamily: "'Georgia', serif" }}>
+        <a href="/" className="text-3xl font-bold text-[#484848]" style={{ fontFamily: "'Georgia', serif" }}>
           FASCO
         </a>
         <div className="flex items-center gap-8">

@@ -33,7 +33,7 @@ const HeroSection = () => {
 
           {/* Text block */}
           <div className="flex flex-col items-center py-1 md:py-6">
-            <h1 className="text-center text-5xl text-[#484848] font-medium uppercase tracking-tight text-foreground md:text-6xl lg:text-8xl">
+            <h1 className="text-center text-5xl text-[#484848] font-medium uppercase tracking-tight  md:text-6xl lg:text-8xl">
               Ultimate
             </h1>
             <p

@@ -137,10 +137,10 @@ const DealsOfTheMonth: React.FC = () => {
         <div className="flex flex-col justify-center">
           <div className="space-y-8">
             <div>
-              <h2 className="text-4xl md:text-5xl font-serif text-gray-800 mb-4">
+              <h2 className="text-4xl md:text-5xl font-serif text-[#484848] mb-4">
                 Deals Of The Month
               </h2>
-              <p className="text-gray-500 text-sm leading-relaxed max-w-md">
+              <p className="text-[#484848] text-sm leading-relaxed max-w-md">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque
                 duis ultrices sollicitudin aliquam sem. Scelerisque duis ultrices
                 sollicitudin
@@ -152,7 +152,7 @@ const DealsOfTheMonth: React.FC = () => {
             </button>
 
             <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-gray-800">
+              <h3 className="text-xl font-semibold text-[#484848]">
                 Hurry, Before It&apos;s Too Late!
               </h3>
               <div className="flex gap-3">
@@ -163,12 +163,12 @@ const DealsOfTheMonth: React.FC = () => {
                   { label: "Sec", val: timeLeft.seconds },
                 ].map((item, i) => (
                   <div key={i} className="text-center">
-                    <div className="bg-white border border-gray-200 rounded-lg px-4 py-3 min-w-[60px] shadow-sm">
-                      <span className="text-3xl font-['DS-Digital'] tracking-wider text-gray-800 flex items-center justify-center">
+                    <div className="bg-white border border-gray-200 rounded-lg px-4 py-3 min-w-[60px] shadow-xl">
+                      <span className="text-3xl font-['DS-Digital'] tracking-wider text-[#484848] flex items-center justify-center">
                         {formatNumber(item.val)}
                       </span>
                     </div>
-                    <span className="text-xs text-gray-500 mt-1 block">{item.label}</span>
+                    <span className="text-lg text-[#484848] mt-1 block ">{item.label}</span>
                   </div>
                 ))}
               </div>
@@ -225,11 +225,11 @@ const DealsOfTheMonth: React.FC = () => {
                       {isFirst && (
                         <div className="absolute bottom-6 left-6 bg-white px-5 py-4 rounded-sm shadow-xl z-10 min-w-[160px]">
                           <div className="flex items-center gap-2 mb-1">
-                            <span className="text-xs text-gray-400 font-medium">{String(slide.id).padStart(2, "0")}</span>
-                            <span className="text-gray-300">—</span>
-                            <span className="text-xs text-gray-600 font-semibold uppercase tracking-wider">{slide.title}</span>
+                            <span className="text-xs text-[#484848] font-medium">{String(slide.id).padStart(2, "0")}</span>
+                            <span className="text-[#484848]">—</span>
+                            <span className="text-xs text-[#484848] font-semibold uppercase tracking-wider">{slide.title}</span>
                           </div>
-                          <p className="text-xl font-bold text-gray-900">{slide.discount}</p>
+                          <p className="text-xl font-semibold text-[#484848]">{slide.discount}</p>
                         </div>
                       )}
                     </div>
