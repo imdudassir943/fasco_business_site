@@ -6,7 +6,7 @@ import NewArrivals from "@/components/newArrivals/NewArrivals";
 import PeakyBlinders from "@/components/peakyBlinders/PeakyBlinders";
 import ValueBar from "@/components/peakyBlinders/ValueBar";
 import Footer from "@/components/Footer";
-
+import SocialGallery from "@/components/socialGallery/SocialGallery";
 
 const Index = () => {
   return (
@@ -18,6 +18,7 @@ const Index = () => {
       <NewArrivals />
       <PeakyBlinders />
       <ValueBar />
+      <SocialGallery />
       <Footer />
     </main>
   );

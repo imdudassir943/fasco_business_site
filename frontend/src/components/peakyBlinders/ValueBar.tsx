@@ -28,7 +28,7 @@ const ValueBar = () => {
   ];
 
   return (
-    <section className="w-full bg-white border-t border-[#E8E8E8] border-b border-b-[#E8E8E8]">
+    <section className="w-full bg-white">
       <div className="max-w-[1280px] mx-auto px-32 py-12">
         <div className="flex flex-wrap justify-between items-center gap-y-6">
           {values.map((item, index) => (
