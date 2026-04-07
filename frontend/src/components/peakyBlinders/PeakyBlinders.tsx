@@ -6,15 +6,15 @@ const PeakyBlinders = () => {
     <section className="relative w-full h-[450px] bg-[#DADADA] overflow-hidden px-4 lg:px-20">
       
       {/* Desktop Layout - Background Divider */}
-      <div className="hidden lg:block absolute inset-0">
+      <div className="hidden lg:block absolute -inset-1">
         <div
-          className="absolute top-0 left-0 h-full w-full bg-black"
+          className="absolute inset-0 bg-black"
           style={{
             clipPath: 'polygon(0 0, calc(55% + 2px) 0, calc(42% + 2px) 100%, 0% 100%)'
           }}
         />
         <div
-          className="absolute top-0 left-0 h-full w-full bg-[#F8F8F8]"
+          className="absolute inset-0 bg-[#F8F8F8]"
           style={{
             clipPath: 'polygon(0 0, 55% 0, 42% 100%, 0% 100%)'
           }}
@@ -22,15 +22,15 @@ const PeakyBlinders = () => {
       </div>
 
       {/* Mobile/Tablet Layout */}
-      <div className="lg:hidden absolute inset-0">
+      <div className="lg:hidden absolute -inset-1">
         <div
-          className="absolute top-0 left-0 h-full w-full bg-black"
+          className="absolute inset-0 bg-black"
           style={{
             clipPath: 'polygon(0 0, 100% 0, 100% calc(55% + 2px), 0 calc(65% + 2px))'
           }}
         />
         <div
-          className="absolute top-0 left-0 h-full w-full bg-[#F8F8F8]"
+          className="absolute inset-0 bg-[#F8F8F8]"
           style={{
             clipPath: 'polygon(0 0, 100% 0, 100% 55%, 0 65%)'
           }}

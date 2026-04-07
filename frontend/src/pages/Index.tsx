@@ -4,6 +4,7 @@ import BrandLogos from "@/components/ui/BrandLogos";
 import DealsSection from "@/components/dealsPage/DealsSection";
 import NewArrivals from "@/components/newArrivals/NewArrivals";
 import PeakyBlinders from "@/components/peakyBlinders/PeakyBlinders";
+import ValueBar from "@/components/peakyBlinders/ValueBar";
 import Footer from "@/components/Footer";
 
 
@@ -16,6 +17,7 @@ const Index = () => {
       <DealsSection />
       <NewArrivals />
       <PeakyBlinders />
+      <ValueBar />
       <Footer />
     </main>
   );
