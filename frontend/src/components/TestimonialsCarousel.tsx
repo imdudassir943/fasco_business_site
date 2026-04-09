@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Testimonial1 from "../assets/Carousel/Carousel1st.png";
-import Testimonial2 from "../assets/Carousel/Carousel2nd.png";
-import Testimonial3 from "../assets/Carousel/Carousel3rd.png";
+import Testimonial1 from "@/assets/Carousel/Carousel1st.png";
+import Testimonial2 from "@/assets/Carousel/Carousel2nd.png";
+import Testimonial3 from "@/assets/Carousel/Carousel3rd.png";
 
 interface Testimonial {
   id: number;

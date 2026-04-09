@@ -8,6 +8,7 @@ import ValueBar from "@/components/peakyBlinders/ValueBar";
 import Footer from "@/components/Footer";
 import SocialGallery from "@/components/socialGallery/SocialGallery";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
+import Newsletter from "@/components/NewsLetter";
 
 const Index = () => {
   return (
@@ -21,6 +22,7 @@ const Index = () => {
       <ValueBar />
       <SocialGallery />
       <TestimonialsCarousel />
+      <Newsletter />
       <Footer />
     </main>
   );
