@@ -37,13 +37,21 @@ const HeroSection = () => {
               Ultimate
             </h1>
             <p
-              className="text-center text-8xl font-bold uppercase tracking-tight text-transparent md:text-7xl lg:text-[180px]"
+              className="text-center uppercase text-transparent md:text-7xl lg:text-[190px]"
               style={{
-                WebkitTextStroke: "1px hsl(var(--foreground))",
+                fontFamily: "'League Spartan', 'Montserrat', sans-serif",
+                fontSize: "190px", // Set explicit size for better control
+                WebkitTextStroke: "0.9px #484848", // Thinner stroke for elegance
                 color: "transparent",
+                lineHeight: "01",
+                letterSpacing: "-0.04em", // Much tighter - letters nearly touch
+                fontWeight: "", // Lighter weight for thin appearance
+                transform: "scaleX(0.87)", // More horizontal compression
+                display: "inline-block",
+                transformOrigin: "center",
               }}
             >
-              Sale
+              SALE
             </p>
             <p className="mt-3 text-lg font-medium uppercase tracking-[0.3em] text-[#484848]">
               New Collection
