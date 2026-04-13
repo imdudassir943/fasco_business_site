@@ -201,7 +201,7 @@ const DealsOfTheMonth: React.FC = () => {
           {/* Images Container */}
           <div className="flex-1 overflow-hidden">
             <div 
-              className={`flex gap-6 items-start w-max ${isTransitioning ? "transition-transform duration-[800ms] ease-in-out" : ""}`}
+              className={`flex gap-6 items-start w-max ${isTransitioning ? "transition-transform duration-800 ease-in-out" : ""}`}
               style={{ transform: `translateX(-${currentSlide * 264}px)` }}
               onTransitionEnd={handleTransitionEnd}
             >
@@ -212,9 +212,9 @@ const DealsOfTheMonth: React.FC = () => {
                 return (
                   <div
                     key={`${slide.id}-${idx}`}
-                    className={`relative flex-shrink-0 transition-all duration-[800ms] ease-in-out ${isFirst ? "w-[320px]" : "w-[240px]"}`}
+                    className={`relative flex-shrink-0 transition-all duration-800 ease-in-out ${isFirst ? "w-[320px]" : "w-[240px]"}`}
                   >
-                    <div className={`relative overflow-hidden bg-gray-100 transition-all duration-[800ms] ease-in-out ${isFirst ? "h-[480px]" : "h-[420px]"}`}>
+                    <div className={`relative overflow-hidden bg-gray-100 transition-all duration-800 ease-in-out ${isFirst ? "h-[480px]" : "h-[420px]"}`}>
                       <img
                         src={slide.image}
                         alt={slide.title}
