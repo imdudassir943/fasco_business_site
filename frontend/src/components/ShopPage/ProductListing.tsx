@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import FilterSidebar, { type FilterState } from './FilterSidebar';
 import ProductGrid from './ProductGrid';
 import ListingHeader from './ListingHeader';
@@ -60,7 +61,7 @@ const ProductListing: React.FC = () => {
       name: 'Linen Plain Top',
       price: 25.00,
       image: Image5,
-      colors: ['#90EE90', 'pattern']
+      colors: ['#90EE90', '#1E338A']
     },
     {
       id: 6,
@@ -95,23 +96,23 @@ const ProductListing: React.FC = () => {
   ];
 
   return (
-    <div className="product-listing-container">
-      <div className="page-header">
-        <h1 className="page-title">Fashion</h1>
-        <div className="breadcrumb">
-          <a href="/">Home</a>
+    <div className="product-listing-container mx-auto w-full max-w-[1280px] px-4 py-8 md:px-6 lg:px-8">
+      <div className="page-header flex flex-col gap-3 border-b border-neutral-200 pb-5 md:flex-row md:items-center md:justify-between">
+        <h1 className="page-title text-3xl font-semibold tracking-tight text-[#222222] md:text-4xl">Fashion</h1>
+        <div className="breadcrumb flex items-center gap-2 text-sm text-[#666666]">
+          <Link to="/" className="transition-colors hover:text-black">Home</Link>
           <span className="separator">›</span>
           <span>Fashion</span>
         </div>
       </div>
 
-      <div className="listing-content">
+      <div className="listing-content mt-8 grid grid-cols-1 gap-8 lg:grid-cols-[280px_minmax(0,1fr)] lg:items-start">
         <FilterSidebar 
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
         />
         
-        <div className="main-content">
+        <div className="main-content min-w-0">
           <ListingHeader 
             viewMode={viewMode}
             setViewMode={setViewMode}

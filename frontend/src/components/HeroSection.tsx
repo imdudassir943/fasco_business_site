@@ -3,6 +3,8 @@ import modelLeft from "@/assets/model-left.png";
 import modelsTop from "@/assets/model-top.png";
 import modelRight from "@/assets/model-right.png";
 import modelsBottom from "@/assets/model-bottom.png";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
   return (
@@ -56,9 +58,9 @@ const HeroSection = () => {
             <p className="mt-3 text-lg font-medium uppercase tracking-[0.3em] text-[#484848]">
               New Collection
             </p>
-            <button className="mt-6 rounded-lg bg-[#000000] px-14 py-5 text-sm font-semibold uppercase tracking-wider text-primary-foreground transition-opacity hover:opacity-90 shadow-lg">
-              Shop Now
-            </button>
+            <Button asChild size="lg" className="mt-6 px-14 py-5 uppercase tracking-wider">
+              <Link to="/shop">Shop Now</Link>
+            </Button>
           </div>
 
           {/* Bottom group photo */}
