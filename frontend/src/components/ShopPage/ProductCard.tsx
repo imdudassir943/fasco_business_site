@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export interface Product {
   id: number;
@@ -24,11 +25,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="product-image-container">
-        <img 
-          src={product.image} 
-          alt={product.name}
-          className="product-image"
-        />
+        <Link to={`/product/${product.id}`}>
+          <img 
+            src={product.image} 
+            alt={product.name}
+            className="product-image"
+          />
+        </Link>
         
         {product.soldOut && (
           <div className="sold-out-badge">

@@ -83,13 +83,6 @@ const DealsOfTheMonth: React.FC = () => {
   }, []);
 
   // Auto-slide every 6 seconds
-  useEffect(() => {
-    const slideTimer = setInterval(() => {
-      nextSlide();
-    }, 6000);
-    return () => clearInterval(slideTimer);
-  }, []);
-
   const nextSlide = () => {
     setIsTransitioning(true);
     setCurrentSlide((prev) => prev + 1);
@@ -99,6 +92,13 @@ const DealsOfTheMonth: React.FC = () => {
     setIsTransitioning(true);
     setCurrentSlide((prev) => prev - 1);
   };
+
+  useEffect(() => {
+    const slideTimer = setInterval(() => {
+      nextSlide();
+    }, 6000);
+    return () => clearInterval(slideTimer);
+  }, []);
 
   const handleTransitionEnd = () => {
     // Seamless infinite reset

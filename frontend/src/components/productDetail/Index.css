@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply antialiased;
+    }
+}
+
+@layer components {
+    /* Custom component styles can be added here */
+
+    .product-thumbnail {
+        @apply transition-all duration-200 ease-in-out;
+    }
+
+    .product-thumbnail:hover {
+        @apply scale-105;
+    }
+
+    /* Hide number input spinners */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+}
+
+@layer utilities {
+    /* Custom utility classes can be added here */
+}
